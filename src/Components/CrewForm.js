@@ -19,11 +19,30 @@ function CrewForm() {
     event.preventDefault();
   };
 
+  const h2Style = {
+    backgroundColor: (() => {
+      switch (formData.airline) {
+        case 'Emirates':
+          return 'red';
+        case 'Qatar':
+          return 'purple';
+        case 'Etihad':
+          return 'brown';
+        default:
+          return 'initial';
+      }
+    })(),
+  };
+
   return (
-    <div>
+    <section
+      id="crewForm"
+      className="CrewForm-Component-Section"
+      style={h2Style}
+    >
       <h2>Your Crew Data</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="CrewForm-Form-Container">
+        <div className="form-input-CrewForm">
           <label>First Name</label>
           <input
             type="text"
@@ -32,7 +51,7 @@ function CrewForm() {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className="form-input-CrewForm">
           <label>Last Name</label>
           <input
             type="text"
@@ -41,8 +60,8 @@ function CrewForm() {
             onChange={handleInputChange}
           />
         </div>
-        <div>
-          <label>Nationality:</label>
+        <div className="form-input-CrewForm">
+          <label>Nationality</label>
           <input
             type="text"
             name="nationality"
@@ -50,7 +69,7 @@ function CrewForm() {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className="form-input-CrewForm">
           <label>Staff Number</label>
           <input
             type="text"
@@ -59,16 +78,20 @@ function CrewForm() {
             onChange={handleInputChange}
           />
         </div>
-        <div>
+        <div className="form-input-CrewForm">
           <label>Airline:</label>
-          <input
-            type="text"
+          <select
             name="airline"
             value={formData.airline}
             onChange={handleInputChange}
-          />
+          >
+            <option value="">Select Airline</option>
+            <option value="Emirates">Emirates</option>
+            <option value="Qatar">Qatar</option>
+            <option value="Etihad">Etihad</option>
+          </select>
         </div>
-        <div>
+        <div className="form-input-CrewForm">
           <label>Year Joined:</label>
           <input
             type="text"
@@ -77,8 +100,9 @@ function CrewForm() {
             onChange={handleInputChange}
           />
         </div>
+        <button className="submitButton">Submit</button>
       </form>
-    </div>
+    </section>
   );
 }
 
